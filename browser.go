@@ -291,6 +291,12 @@ func (b *Browser) run(ctx context.Context) {
 				if _, ok := pages[m.SessionID]; !ok {
 					b.errf("executor for %q doesn't exist", m.SessionID)
 				}
+				keys := make([]cdp.FrameID, 0, len(page.frames))
+				for k := range page.frames {
+					keys = append(keys, k)
+				}
+				fmt.Printf("Deleting frame ID - %v\n", string(m.Params))
+				fmt.Printf("Current frame - %v\n", page.cur.ID)
 				delete(pages, m.SessionID)
 			}
 
