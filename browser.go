@@ -297,6 +297,8 @@ func (b *Browser) run(ctx context.Context) {
 				}
 				fmt.Printf("Deleting frame ID - %v\n", string(m.Params))
 				fmt.Printf("Current frame - %v\n", page.cur.ID)
+				val, _ := cdproto.UnmarshalMessage(m)
+				fmt.Printf("val %v\n", val)
 				delete(pages, m.SessionID)
 			}
 
