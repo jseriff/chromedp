@@ -291,15 +291,7 @@ func (b *Browser) run(ctx context.Context) {
 				if _, ok := pages[m.SessionID]; !ok {
 					b.errf("executor for %q doesn't exist", m.SessionID)
 				}
-				keys := make([]cdp.FrameID, 0, len(page.frames))
-				for k := range page.frames {
-					keys = append(keys, k)
-				}
-				fmt.Printf("Deleting frame ID - %v\n", string(m.Params))
-				fmt.Printf("Current frame - %v\n", page.cur.ID)
-				val, _ := cdproto.UnmarshalMessage(m)
-				fmt.Printf("val %v\n", val)
-				delete(pages, m.SessionID)
+				// delete(pages, m.SessionID)
 			}
 
 		case <-b.LostConnection:
